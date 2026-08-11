@@ -18,11 +18,11 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: 17
+          java-version: 21
           check-latest: true
 
       - name: Build using Gradle
@@ -42,13 +42,7 @@ jobs:
 
       - name: Upload Neoforge artifacts to GitHub
         if: ${{ hashFiles('neoforge/build/libs/**') != '' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Neoforge-Artifacts
           path: neoforge/build/libs
-
-      - name: Upload Spigot artifacts to GitHub
-        uses: actions/upload-artifact@v4
-        with:
-          name: Spigot-Artifacts
-          path: spigot/build/libs/
